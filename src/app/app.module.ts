@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HeaderComponent, SharedModule } from './shared';
+import { HomeModule } from './home/home.module';
 
 import { CoreModule } from './core';
 
@@ -14,7 +15,8 @@ import { CoreModule } from './core';
     BrowserModule,
     CoreModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
