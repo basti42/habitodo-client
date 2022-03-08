@@ -23,11 +23,10 @@ export class ShowAuthedDirective implements OnInit{
   ngOnInit(): void {
     this.userService.isAuthenticated.subscribe({
       next: isAuthenticated => {
-        console.log("DIRECTIVE: isAuthenticated: ", isAuthenticated);
-        console.log("DIRECTIVE: condition: ", this.condition);
+        // console.debug("DIRECTIVE: isAuthenticated: ", isAuthenticated);
+        // console.debug("DIRECTIVE: condition: ", this.condition);
         // show home, login and register when user not authed and directive is false
-        if (!isAuthenticated && !this.condition){
-          console.log(this.viewContainer);
+        if (isAuthenticated && this.condition || !isAuthenticated && !this.condition){
           this.viewContainer.createEmbeddedView(this.templateRef);
         } else {
           this.viewContainer.clear();

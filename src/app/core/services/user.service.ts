@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, ReplaySubject } from 'rxjs';
+import { Observable, BehaviorSubject, ReplaySubject, of , map} from 'rxjs';
 import { distinctUntilChanged } from 'rxjs';
 
 
-import { User } from '../models';
+import { User, Credentials } from '../models';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 
@@ -53,6 +53,45 @@ export class UserService {
     // Set auth status to false
     this.isAuthenticatedSubject.next(false);
   }
+
+  login(email: string, password: string): Observable<User>{
+    return this.apiService.loginUser(email, password).pipe(map(
+      user => {
+        this.setAuth(user, user.token);
+        return user;
+      }
+    ));
+  }
+
+  register(username: string, email: string, password: string): Observable<User>{
+    return this.apiService.registerUser(username, email, password).pipe(map(
+      user => {
+        this.setAuth(user, user.token);
+        return user;
+      } 
+    ));
+  }
+
+  logout(){
+    return this.apiService.logoutUser().pipe(map(
+      nothing => {
+        this.purgeAuth();
+        return nothing;
+      }
+    ));
+  }
+
+  // attemptAuth(type: string, credentials: Credentials): Observable<User> {
+  //   const route = (type === 'login') ? '/login' : '';
+  //   return this.apiService.auth('/users' + route, {user: credentials})
+  //     .pipe(map(
+  //     data => {  
+  //       this.setAuth(data.user);
+  //       return data;
+  //     }
+  //   ));
+  // }
+
 
   getCurrentUser(): User {
     return this.currentUserSubject.value;

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { HeaderComponent, SharedModule } from './shared';
 import { HomeModule } from './home/home.module';
+import { AuthModule } from './auth/auth.module';
 
 import { CoreModule } from './core';
 
@@ -16,7 +17,8 @@ import { CoreModule } from './core';
     CoreModule,
     SharedModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

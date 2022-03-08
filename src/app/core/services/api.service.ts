@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { catchError, Observable, throwError } from 'rxjs';
+import { User } from '../models';
 
 
 @Injectable({
@@ -13,12 +14,12 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
 
-  registerUser(user: Object) : Observable<any>{
-    return this.http.post(environment.user_registration, JSON.stringify(user));
+  registerUser(username: string, email: string, password: string) : Observable<User>{
+    return this.http.post<User>(environment.user_registration, {username, email, password});
   }
 
-  loginUser(email: string, password: string) : Observable<any> {
-    return this.http.post(environment.user_login, JSON.stringify({email, password}));
+  loginUser(email: string, password: string) : Observable<User> {
+    return this.http.post<User>(environment.user_login, {email, password});
   }
 
   logoutUser() : Observable<any> {
