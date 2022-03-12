@@ -3,9 +3,10 @@ import { Observable, BehaviorSubject, ReplaySubject, of , map} from 'rxjs';
 import { distinctUntilChanged } from 'rxjs';
 
 
-import { User, Credentials } from '../models';
+import { User } from '../models';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
+import { ProfileService } from './profile.service';
 
 
 @Injectable({
@@ -19,7 +20,10 @@ export class UserService {
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
-  constructor(private apiService: ApiService, private jwtService: JwtService) { }
+  constructor(
+    private apiService: ApiService, 
+    private jwtService: JwtService, 
+    private profileService: ProfileService) { }
 
   // this will be run once on app startup
   populate(){
@@ -43,6 +47,8 @@ export class UserService {
     this.currentUserSubject.next(user);
     // Set isAuthenticated to true
     this.isAuthenticatedSubject.next(true);
+    // retrieve the user profile
+    this.profileService.retrieveProfile();
   }
 
   purgeAuth() {
@@ -52,6 +58,8 @@ export class UserService {
     this.currentUserSubject.next({} as User);
     // Set auth status to false
     this.isAuthenticatedSubject.next(false);
+    // remove the current profile
+    this.profileService.forgetProfile();
   }
 
   login(email: string, password: string): Observable<User>{
@@ -74,9 +82,9 @@ export class UserService {
 
   logout(){
     return this.apiService.logoutUser().pipe(map(
-      nothing => {
+      status => {
         this.purgeAuth();
-        return nothing;
+        return status.message;
       }
     ));
   }

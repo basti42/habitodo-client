@@ -9,6 +9,7 @@ import { HomeModule } from './home/home.module';
 import { AuthModule } from './auth/auth.module';
 
 import { CoreModule } from './core';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [ AppComponent, HeaderComponent ],
@@ -18,7 +19,8 @@ import { CoreModule } from './core';
     SharedModule,
     AppRoutingModule,
     HomeModule,
-    AuthModule
+    AuthModule,
+    ProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]

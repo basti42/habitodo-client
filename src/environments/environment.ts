@@ -7,7 +7,8 @@ export const environment = {
   user_registration: "http://localhost:5000/api/v1/user/register",
   user_login: "http://localhost:5000/api/v1/user/login",
   user_logout: "http://localhost:5000/api/v1/user/logout",
-  user_information: "http://localhost:5000/api/v1/user/me"
+  user_information: "http://localhost:5000/api/v1/user/me",
+  user_profile: "http://localhost:5000/api/v1/user/profile"
 };
 
 /*

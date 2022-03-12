@@ -27,7 +27,7 @@
   
         <li *appShowAuthed="true" class="nav-item">
           <a class="nav-link" [routerLink]="['/profile', currentUser.username]" routerLinkActive="active">
-              <img [src]="currentUser.icon_path" *ngIf="currentUser.icon_path" class="user-pic" />{{ currentUser.username }}</a>
+              <img [src]="currentUser.icon_path.replace('s=150', 's=20')" *ngIf="currentUser.icon_path" class="user-pic" />&nbsp;{{ currentUser.username }}</a>
         </li>
 
         <!--  EXAMPLE FOR DROPDOWN NAVBAR ITEM

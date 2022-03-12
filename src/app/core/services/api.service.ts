@@ -30,4 +30,8 @@ export class ApiService {
     return this.http.get(environment.user_information);
   }
 
+  getUserProfile(): Observable<any> {
+    return this.http.get(environment.user_profile);
+  }
+
 }
