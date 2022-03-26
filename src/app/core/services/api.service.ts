@@ -34,4 +34,8 @@ export class ApiService {
     return this.http.get(environment.user_profile);
   }
 
+  updateUserProfile(username: string, position: string, bio: string): Observable<any> {
+    return this.http.post(environment.user_profile_update, {username, bio, position} );
+  }
+
 }

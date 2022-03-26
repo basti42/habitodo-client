@@ -57,15 +57,17 @@
 
 
     <div *ngIf="!currentUser.email_validated" class="row mt-3">
-        <div class="col-12">
-            <div class="card bg-success">
-                <div class="card-body">
-                    <h5 class="card-title text-center">
-                        <a class="link-light" href="#">Confirm Email Address</a>
-                    </h5>
+        <a href="#">        
+            <div class="col-12">
+                <div class="card bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            <p style="text-decoration: none; color: white;">Confirm Email Address</p>
+                        </h5>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 
 
@@ -76,7 +78,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Retros</h5>
+                    <h5 class="card-title border-bottom">Retros</h5>
                     <ul class="list-group">
                         <li *ngFor="let board in currentProfile.boards" class="list-group-item">{{ board.name }}</li>
                     </ul>

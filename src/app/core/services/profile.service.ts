@@ -32,6 +32,18 @@ retrieveProfile(){
   } 
 }
 
+updateProfile(username: string, bio: string, position: string){
+  const token = this.jwtService.getToken();
+  if (token) {
+    this.apiService.updateUserProfile(username, position, bio).subscribe({
+      next: result => { console.log(`Update profile message: ${result.message}`); },
+      error: err => { console.error(`Update profile message: ${err}`); }
+    });
+  } else {
+    console.log("Unable to update profile. Token probably exipred. Please login again!");
+  }
+}
+
 forgetProfile(){
   this.currentProfileSubject.next({} as Profile);
 }
