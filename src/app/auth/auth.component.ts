@@ -1,9 +1,8 @@
-import { AstMemoryEfficientTransformer } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { UserService } from '../core';
+import { Errors, UserService } from '../core';
 
 
 @Component({
@@ -15,6 +14,7 @@ export class AuthComponent implements OnInit {
 
   authType: String = '';
   title: String = "";
+  errors: Errors = {errors: {}};
   authForm: FormGroup;
   isSubmitting: boolean = false;
 
@@ -48,7 +48,7 @@ export class AuthComponent implements OnInit {
 
   submitForm() {
     this.isSubmitting = true;
-    // this.errors = {errors: {}};
+    this.errors = {errors: {}};
 
     const credentials = this.authForm.value;
     if (this.authType === 'login'){
@@ -57,8 +57,9 @@ export class AuthComponent implements OnInit {
           this.router.navigate(['/']);
         },
         error: err => {
-          // this.errors = err;
-          console.error("Auth Component ", err);
+          let msg = err.error.message;
+          this.errors = {errors: {msg}};
+          // console.error("Auth Component ", err);
           this.isSubmitting = false;
         }
       });
@@ -68,7 +69,10 @@ export class AuthComponent implements OnInit {
           this.router.navigate(["/"]);
         },
         error: err => {
-          console.error("Auth Component ", err);
+          let msg = err.error.message;
+          this.errors = {errors: {msg}};
+          // console.error("Auth Component ", err);
+          // console.error("Error List: ", this.errors);
           this.isSubmitting = false;
         }
       });
