@@ -6,7 +6,7 @@ import { distinctUntilChanged } from 'rxjs';
 import { User } from '../models';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
-import { ProfileService } from './profile.service';
+import { TeamService } from './team.service';
 
 
 @Injectable({
@@ -23,7 +23,7 @@ export class UserService {
   constructor(
     private apiService: ApiService, 
     private jwtService: JwtService, 
-    private profileService: ProfileService) { }
+    private teamService: TeamService) { }
 
   // this will be run once on app startup
   populate(){
@@ -47,8 +47,10 @@ export class UserService {
     this.currentUserSubject.next(user);
     // Set isAuthenticated to true
     this.isAuthenticatedSubject.next(true);
-    // retrieve the user profile
-    this.profileService.retrieveProfile();
+    // retrieve Team information for the user if exists already
+    if (user.team_ids && user.team_ids.length > 0){
+      this.teamService.getTeam(user.team_ids[0]);
+    }
   }
 
   purgeAuth() {
@@ -58,8 +60,6 @@ export class UserService {
     this.currentUserSubject.next({} as User);
     // Set auth status to false
     this.isAuthenticatedSubject.next(false);
-    // remove the current profile
-    this.profileService.forgetProfile();
   }
 
   login(email: string, password: string): Observable<User>{
@@ -87,6 +87,19 @@ export class UserService {
         return status.message;
       }
     ));
+  }
+
+  updateProfile(username: string, bio: string, position: string){
+    // console.debug("user service: ", username, bio, position);
+    return this.apiService.updateUserProfile(username, position, bio).pipe(map(
+      status => {
+        this.apiService.getUserData().pipe(map(user => {
+          // console.debug("user service update: ", user);
+          this.currentUserSubject.next(user);
+        }));
+        return status.message;
+      } 
+    ))
   }
 
   // attemptAuth(type: string, credentials: Credentials): Observable<User> {

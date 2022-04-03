@@ -3,5 +3,11 @@ export interface User {
     email: string,
     email_validated: boolean,
     token: string,
-    icon_path: string
+    icon_path: string,
+    registered_at: Date,
+    bio: string, 
+    position: string, 
+    boards: Array<object>,
+    personal_notes: Array<object>,
+    team_ids: Array<string>
 }

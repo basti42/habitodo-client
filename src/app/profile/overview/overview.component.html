@@ -12,7 +12,7 @@
                             <h5 class="text-muted fw-normal mt-0 text-truncate small">registered since:</h5>
                         </div>
                         <div class="col-6">
-                            <p class="card-text">{{ currentProfile.registered_at }}</p>
+                            <p class="card-text">{{ currentUser.registered_at }}</p>
                         </div>
                     </div>
                     <!-- <img class="rounded-circle mt-5" width="150px" src="{{ currentUser.icon_path }}"> -->
@@ -45,7 +45,7 @@
                             <p class="card-text text-muted small"># of retro boards:</p>
                         </div>
                         <div class="col-6">
-                            <p class="card-text">{{ currentProfile.boards.length || 0 }}</p>
+                            <p class="card-text">{{ (currentUser.boards) ? currentUser.boards.length : 0 }}</p>
                         </div>
                     </div>
                     <a href="#" class="link-primary small">create Board</a>
@@ -79,9 +79,9 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title border-bottom">Retros</h5>
-                    <ul class="list-group">
-                        <li *ngFor="let board in currentProfile.boards" class="list-group-item">{{ board.name }}</li>
-                    </ul>
+                    <!-- <ul class="list-group">
+                        <li *ngFor="let board in currentUser.boards" class="list-group-item">{{ board.name }}</li>
+                    </ul> -->
                 </div>
             </div>
 

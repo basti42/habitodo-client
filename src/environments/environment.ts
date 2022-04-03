@@ -2,14 +2,20 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const host = "localhost";
+const port = "5000";
+
 export const environment = {
   production: false,
-  user_registration: "http://localhost:5000/api/v1/user/register",
-  user_login: "http://localhost:5000/api/v1/user/login",
-  user_logout: "http://localhost:5000/api/v1/user/logout",
-  user_information: "http://localhost:5000/api/v1/user/me",
-  user_profile: "http://localhost:5000/api/v1/user/profile",
-  user_profile_update: "http://localhost:5000/api/v1/user/update_profile"
+  user_registration: `http://${host}:${port}/api/v1/user/register`,
+  user_login: `http://${host}:${port}/api/v1/user/login`,
+  user_logout: `http://${host}:${port}/api/v1/user/logout`,
+  user_information: `http://${host}:${port}/api/v1/user/me`,
+  // user_profile: `http://${host}:${port}/api/v1/user/profile`,
+  user_profile_update: `http://${host}:${port}/api/v1/user/update_profile`,
+  team_get: `http://${host}:${port}/api/v1/team/get`,
+  team_add: `http://${host}:${port}/api/v1/team/add`,
+  team_delete: `http://${host}:${port}/api/v1/team/delete`
 };
 
 /*

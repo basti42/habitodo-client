@@ -21,13 +21,17 @@
           <a class="nav-link" [routerLink]="['/profile', currentUser.username]" routerLinkActive="active">
               <img [src]="currentUser.icon_path.replace('s=150', 's=20')" *ngIf="currentUser.icon_path" class="user-pic" />&nbsp;{{ currentUser.username }}</a>
         </li>
-  
+
         <li *appShowAuthed="true" class="nav-item">
-          <a class="nav-link" routerLink="/board" routerLinkActive="active"><i class="ion-compose"></i>New Board</a>
+          <a class="nav-link" routerLink="/team" routerLinkActive="active"><i class="glyphicon glyphicon-home"></i>Team</a>
         </li>
   
         <li *appShowAuthed="true" class="nav-item">
-          <a class="nav-link" routerLink="/settings" routerLinkActive="active"><i class="ion-gear-a"></i>Settings</a>
+          <a class="nav-link" routerLink="/board" routerLinkActive="active"><i class="glyphicon glyphicon-list"></i>New Board</a>
+        </li>
+  
+        <li *appShowAuthed="true" class="nav-item">
+          <a class="nav-link" routerLink="/settings" routerLinkActive="active"><i class="glyphicon glyphicon-stats"></i>Settings</a>
         </li>
 
         <!--  EXAMPLE FOR DROPDOWN NAVBAR ITEM

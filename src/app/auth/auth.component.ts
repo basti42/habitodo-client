@@ -57,6 +57,7 @@ export class AuthComponent implements OnInit {
           this.router.navigate(['/']);
         },
         error: err => {
+          console.error("Auth error: ", err);
           let msg = err.error.message;
           this.errors = {errors: {msg}};
           // console.error("Auth Component ", err);
