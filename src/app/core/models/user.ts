@@ -1,5 +1,6 @@
 export interface User {
     username: string,
+    user_id: string,
     email: string,
     email_validated: boolean,
     token: string,
