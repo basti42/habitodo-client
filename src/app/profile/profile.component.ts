@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
         'username': [''],
         'position': [''],
         'bio': ['']
-      })
+      });
     }
 
   ngOnInit(): void {

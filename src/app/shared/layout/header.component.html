@@ -19,7 +19,7 @@
 
         <li *appShowAuthed="true" class="nav-item">
           <a class="nav-link" [routerLink]="['/profile', currentUser.username]" routerLinkActive="active">
-              <img [src]="currentUser.icon_path.replace('s=150', 's=20')" *ngIf="currentUser.icon_path" class="user-pic" />&nbsp;{{ currentUser.username }}</a>
+              <img style="height: 20px; width: 20px;" [src]="currentUser.icon_path" *ngIf="currentUser.icon_path" class="user-pic" />&nbsp;{{ currentUser.username }}</a>
         </li>
 
         <li *appShowAuthed="true" class="nav-item">

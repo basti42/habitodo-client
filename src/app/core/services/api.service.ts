@@ -40,6 +40,11 @@ export class ApiService {
     return this.http.post(environment.user_profile_update, {username, bio, position} );
   }
 
+  uploadAvatarImage(img_header: string, img_data: string) : Observable<any> {
+    console.debug("Routes: ", img_header, img_data);
+    return this.http.put(environment.user_avatar_upload, {img_header, img_data});
+  }
+
   /*
     Team
   */
