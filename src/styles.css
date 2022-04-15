@@ -6,4 +6,9 @@
     --habitodo-light-blue: #9EB7E5;
     --habitodo-blue: #648DE5;
     --habitodo-dark-blue: #304C89;
+    --habitodo-backdrop: rgba(173,230,216, 0.25);
+}
+
+.card {
+    border-radius: 0px !important;
 }

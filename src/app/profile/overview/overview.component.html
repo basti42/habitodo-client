@@ -12,7 +12,7 @@
                             <h5 class="text-muted fw-normal mt-0 text-truncate small">registered since:</h5>
                         </div>
                         <div class="col-6">
-                            <p class="card-text">{{ currentUser.registered_at }}</p>
+                            <p class="text-muted fw-normal mt-0 text-truncate small">{{ currentUser.registered_at }}</p>
                         </div>
                     </div>
                     <!-- <img class="rounded-circle mt-5" width="150px" src="{{ currentUser.icon_path }}"> -->
@@ -27,7 +27,7 @@
                     <h5 class="card-title border-bottom">Team</h5>
                     <div class="row align-items-center">
                         <div class="col-12">
-                            <p class="card-text text-muted">Create a team to better track progress!</p>
+                            <p class="text-muted fw-normal mt-0 text-truncate small">Create a team to better track progress!</p>
                         </div>
                     </div>
                     
@@ -45,7 +45,7 @@
                             <p class="card-text text-muted small"># of retro boards:</p>
                         </div>
                         <div class="col-6">
-                            <p class="card-text">{{ (currentUser.boards) ? currentUser.boards.length : 0 }}</p>
+                            <p class="text-muted fw-normal mt-0 text-truncate small">{{ (currentUser.boards) ? currentUser.boards.length : 0 }}</p>
                         </div>
                     </div>
                     <a href="#" class="link-primary small">create Board</a>
