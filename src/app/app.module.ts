@@ -11,6 +11,8 @@ import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core';
 import { ProfileModule } from './profile/profile.module';
 
+import { TeamModule } from './team/team.module';
+
 @NgModule({
   declarations: [ AppComponent, HeaderComponent ],
   imports: [
@@ -20,7 +22,8 @@ import { ProfileModule } from './profile/profile.module';
     AppRoutingModule,
     HomeModule,
     AuthModule,
-    ProfileModule
+    ProfileModule,
+    TeamModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,72 @@
-<p>team-creator works!</p>
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+
+        <!-- Team settings -->
+        <div class="col-md-12">
+            <div class="p-3 py-1">
+                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom">
+                    <h4 class="text-right">Create a Team</h4>
+                    <span id="logoPreviewWindow">logo preview</span>
+                </div>
+
+                <form [formGroup]="teamForm" (ngSubmit)="submitForm()">
+
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label class="labels">Team Name</label>
+                            <input formControlName="team_name" type="text" class="form-control" placeholder="Select a Team name" value="">
+                            <small id="teamNameHelp" class="form-text text-muted">This is how your team shall be named from now on.</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">Team Logo</label>
+                            <input formControlName="team_logo" type="file" class="form-control">
+                            <small id="teamLogoHelp" class="form-text text-muted">.png or .jpg max. 1.5 MB size</small>
+                        </div>
+                    </div> 
+
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label class="labels">Title / Position</label>
+                            <input formControlName="position" type="text" class="form-control" placeholder="" value="">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Bio</label>
+                            <input formControlName="bio" type="text" class="form-control" placeholder="" value="">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Email ID</label>
+                            <input type="text" class="form-control" value="" readonly>
+                        </div>
+                    </div>
+                    <!--
+                        TODO create a new team from here!!! 
+                    <div class="row mt-3"> 
+                        <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
+                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                    </div>
+                    -->
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Update Profile</button></div>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- Boards and maybe team settings?
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience">
+                    <h4 class="text text-right">Retro Boards</h4>
+                </div><br>
+
+                <ul class="list-group">
+                    <li *ngFor="board in currentProfile.boards" class="list-group-item"></li>
+                </ul>
+
+
+                <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
+                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+            </div>
+        </div>
+        -->
+    </div>
+</div>

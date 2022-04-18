@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+/* Habitodo global styles --> can be corporate design at some point */
 
 :root {
     --habitodo-sand: #CDC392;
@@ -9,6 +9,17 @@
     --habitodo-backdrop: rgba(173,230,216, 0.25);
 }
 
+/* No rounded edges for forms or buttons */
+
 .card {
+    border-radius: 0px !important;
+}
+
+
+.form-control {
+    border-radius: 0px !important;
+}
+
+.btn {
     border-radius: 0px !important;
 }
