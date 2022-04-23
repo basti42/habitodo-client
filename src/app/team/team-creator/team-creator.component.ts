@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Team } from 'src/app/core';
 
 @Component({
   selector: 'app-team-creator',
@@ -11,6 +10,8 @@ import { Team } from 'src/app/core';
 export class TeamCreatorComponent implements OnInit {
 
   teamForm: FormGroup;
+  emailForm: FormGroup;
+  emails: Array<String> = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -19,8 +20,10 @@ export class TeamCreatorComponent implements OnInit {
     this.teamForm = this.formBuilder.group({
       'team_name': [''],
       'team_logo': [''],
-      'use_moral_metric': [''],
-      'team_emails': ['']
+      'use_moral_metric': ['']
+    });
+    this.emailForm = this.formBuilder.group({
+      'member_email': ['', Validators.email ]
     });
   }
 
@@ -29,6 +32,13 @@ export class TeamCreatorComponent implements OnInit {
   submitForm() {
     const formValues = this.teamForm.value;
     console.log("Team Form Values: ", formValues);
+  }
+
+  addEmail(){
+    const emailValue = this.emailForm.value.member_email;
+    this.emails.push(emailValue);
+    this.emailForm.setValue({'member_email': ''});
+    console.log("Emails: ", this.emails);
   }
 
 }

@@ -24,14 +24,31 @@
                         </div>
                     </div> 
 
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <label class="labels">Title / Position</label>
-                            <input formControlName="position" type="text" class="form-control" placeholder="" value="">
+                    <form [formGroup]="emailForm" (ngSubmit)="addEmail()">
+                        <div class="row mt-5">
+                            <label class="labels">Add Members by Email</label>
+                            <div class="col-md-10">
+                                <input formControlName="member_email" type="email" class="form-control">
+                                
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-secondary w-100" (ngSubmit)="addEmail()">add email</button>
+                            </div>
                         </div>
+                    </form>
+
+                    <!-- display the entered emails below -->
+                    <div class="row mt-2">
                         <div class="col-md-12">
-                            <label class="labels">Bio</label>
-                            <input formControlName="bio" type="text" class="form-control" placeholder="" value="">
+                            <span class="badge bg-secondary mx-1" *ngFor="let email of emails">{{ email }}</span>
+                        </div>
+                    </div>
+                    
+
+                    <div class="row mt-5">
+                        <label class="labels">Metric</label>
+                        <div class="col-md-12">
+                            <input formControlName="use_moral_metric" type="checkbox" class="form-control" placeholder="" value="">
                         </div>
                         <div class="col-md-12">
                             <label class="labels">Email ID</label>
