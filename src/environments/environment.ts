@@ -16,7 +16,8 @@ export const environment = {
   user_profile_update: `http://${host}:${port}/api/v1/user/update_profile`,
   team_get: `http://${host}:${port}/api/v1/team/get`,
   team_add: `http://${host}:${port}/api/v1/team/add`,
-  team_delete: `http://${host}:${port}/api/v1/team/delete`
+  team_delete: `http://${host}:${port}/api/v1/team/delete`,
+  metrics_get: `http://${host}:${port}/api/v1/templates/metrics`
 };
 
 /*

@@ -56,4 +56,12 @@ export class ApiService {
     return this.http.put(environment.team_add, { team_name: team.team_name, team_logo: team.team_logo, members_emails: team.members_emails });
   }
 
+
+  /*
+    Metrics
+  */
+ getMetrics() : Observable<any> {
+   return this.http.get(environment.metrics_get);
+ }
+
 }
