@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserService } from './core';
+import { TeamService, User, UserService } from './core';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,14 @@ import { User, UserService } from './core';
 export class AppComponent implements OnInit {
   title = 'habitodo-client';
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private teamService: TeamService
+  ) {}
 
   ngOnInit(){
     this.userService.populate();
+    this.teamService.setInitialTeam("0");
   }
 
 }

@@ -4,10 +4,11 @@
 
         <!-- <div class="col-md-6 col-xl-3"> -->
         <div class="col-lg-4">
-            <div class="card">
+            <div class="card card card-fixed-height">
                 <div class="card-body">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center justify-content-space-between">
                         <h5 class="card-title border-bottom">{{ currentUser.username }}</h5>
+                        <!-- <img class="user-pic" src="{{ currentUser.icon_path }}" style="width: 20px; height: 20px"/> -->
                         <div class="col-6">
                             <h5 class="text-muted fw-normal mt-0 text-truncate small">registered since:</h5>
                         </div>
@@ -21,8 +22,34 @@
             </div>
         </div>
     
-        <div class="col-lg-4">
-            <div class="card">
+        <div class="col-lg-4"  *ngIf="(currentTeam | json) != '{}'">
+            <div class="card card card-fixed-height">
+                <div class="card-body">
+                    <h5 class="card-title border-bottom">{{ currentTeam.team_name }}</h5>
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <h5 class="text-muted fw-normal mt-0 text-truncate small">created at:</h5>
+                        </div>
+                        <div class="col-6">
+                            <p class="text-muted fw-normal mt-0 text-truncate small">{{ currentTeam.created_at }}</p>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <h5 class="text-muted fw-normal mt-0 text-truncate small">Number of Members:</h5>
+                        </div>
+                        <div class="col-6">
+                            <p class="text-muted fw-normal mt-0 text-truncate small">{{ currentTeam.members_emails.length + currentTeam.team_admins.length }}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- <a href="#" class="link-primary small" [routerLink]="['/team/create']">create Team</a> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4" *ngIf="(currentTeam | json) === '{}'">
+            <div class="card card-fixed-height">
                 <div class="card-body">
                     <h5 class="card-title border-bottom">Team</h5>
                     <div class="row align-items-center">
@@ -37,12 +64,12 @@
         </div>
 
         <div class="col-lg-4">
-            <div class="card">
+            <div class="card card card-fixed-height">
                 <div class="card-body">
                     <h5 class="card-title border-bottom">Boards</h5>
                     <div class="row align-items-center">
                         <div class="col-6">
-                            <p class="card-text text-muted small"># of retro boards:</p>
+                            <p class="card-text text-muted small">Number of Retro Boards:</p>
                         </div>
                         <div class="col-6">
                             <p class="text-muted fw-normal mt-0 text-truncate small">{{ (currentUser.boards) ? currentUser.boards.length : 0 }}</p>

@@ -3,7 +3,7 @@ import { Observable, BehaviorSubject, ReplaySubject, of , map} from 'rxjs';
 import { distinctUntilChanged } from 'rxjs';
 
 
-import { User } from '../models';
+import { User, Team } from '../models';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { TeamService } from './team.service';
@@ -20,10 +20,10 @@ export class UserService {
   private isAuthenticatedSubject = new ReplaySubject<boolean>(0);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
+
   constructor(
     private apiService: ApiService, 
-    private jwtService: JwtService, 
-    private teamService: TeamService) { }
+    private jwtService: JwtService) {}
 
   // this will be run once on app startup
   populate(){
@@ -47,10 +47,6 @@ export class UserService {
     this.currentUserSubject.next(user);
     // Set isAuthenticated to true
     this.isAuthenticatedSubject.next(true);
-    // retrieve Team information for the user if exists already
-    if (user.team_ids && user.team_ids.length > 0){
-      this.teamService.getTeam(user.team_ids[0]);
-    }
   }
 
   purgeAuth() {

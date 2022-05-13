@@ -1,7 +1,10 @@
+import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Metrics, MetricService } from 'src/app/core';
+import { Team } from 'src/app/core';
+import { TeamService, UserService } from 'src/app/core';
 
 @Component({
   selector: 'app-team-creator',
@@ -19,6 +22,8 @@ export class TeamCreatorComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private metricsService: MetricService,
+    private teamService: TeamService,
+    private userService: UserService,
     private router: Router
   ) {
     this.metricsService.currentMetrics.subscribe({
@@ -44,7 +49,25 @@ export class TeamCreatorComponent implements OnInit {
 
   submitForm() {
     const formValues = this.teamForm.value;
-    console.log("Team Form Values: ", formValues);
+    
+    const team = {
+      team_name: formValues.team_name, 
+      team_id: "",
+      team_logo: formValues.team_logo,
+      created_at: new Date(),
+      members_emails: this.emails,
+      boards: [],
+      team_admins: [this.userService.getCurrentUser().user_id],
+      metrics: [formValues.metric]
+    } as Team;
+
+    // add team in backend
+    console.log("Team: ", team);
+    this.teamService.addTeam(team);
+
+    // re-route to profile overview
+    this.router.navigate(["profile", this.userService.getCurrentUser().username]);
+
   }
 
   addEmail(){
