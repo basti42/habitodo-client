@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     this.userService.populate();
-    this.teamService.setInitialTeam("0");
+    this.teamService.setInitialTeam();
   }
 
 }

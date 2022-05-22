@@ -17,7 +17,7 @@ export class ApiService {
     Authentication
   */
   registerUser(username: string, email: string, password: string) : Observable<User>{
-    return this.http.post<User>(environment.user_registration, {username, email, password});
+    return this.http.put<User>(environment.user_registration, {username, email, password});
   }
 
   loginUser(email: string, password: string) : Observable<User> {
@@ -52,8 +52,12 @@ export class ApiService {
     return this.http.get(`${environment.team_get}/${team_id}`);
   }
 
+  getTeams() : Observable<any> {
+    return this.http.get(environment.team_get);
+  }
+
   addTeam(team: Team) : Observable<any> {
-    return this.http.put(environment.team_add, { team_name: team.team_name, team_logo: team.team_logo, members_emails: team.members_emails });
+    return this.http.put(environment.team_add, { team_name: team.team_name, team_logo: team.team_logo, members_emails: team.emails });
   }
 
 

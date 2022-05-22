@@ -7,15 +7,16 @@ const port = "5000";
 
 export const environment = {
   production: false,
-  user_registration: `http://${host}:${port}/api/v1/user/register`,
-  user_login: `http://${host}:${port}/api/v1/user/login`,
-  user_logout: `http://${host}:${port}/api/v1/user/logout`,
-  user_information: `http://${host}:${port}/api/v1/user/me`,
+  user_registration: `http://${host}:${port}/api/v1/users/`,
+  user_login: `http://${host}:${port}/api/v1/users/`,
+  user_logout: `http://${host}:${port}/api/v1/users/logout`,
+  user_information: `http://${host}:${port}/api/v1/users/me`,
+  user_profile_update: `http://${host}:${port}/api/v1/users/me`,
+
   user_avatar_upload: `http://${host}:${port}/api/v1/files/upload/useravatar`,
   // user_profile: `http://${host}:${port}/api/v1/user/profile`,
-  user_profile_update: `http://${host}:${port}/api/v1/user/update_profile`,
-  team_get: `http://${host}:${port}/api/v1/team/get`,
-  team_add: `http://${host}:${port}/api/v1/team/add`,
+  team_get: `http://${host}:${port}/api/v1/teams/`,
+  team_add: `http://${host}:${port}/api/v1/teams/`,
   team_delete: `http://${host}:${port}/api/v1/team/delete`,
   metrics_get: `http://${host}:${port}/api/v1/templates/metrics`
 };

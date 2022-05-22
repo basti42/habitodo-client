@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserService } from 'src/app/core';
+import { User, UserService, Team, TeamService } from 'src/app/core';
 
 import { Router } from '@angular/router';
 
@@ -10,9 +10,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  currentUser: User;
+  currentUser: User = {} as User;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private teamService: TeamService, 
+    private router: Router) { }
 
   ngOnInit(): void {
     this.userService.currentUser.subscribe({
@@ -28,6 +31,7 @@ export class HeaderComponent implements OnInit {
        },
       error: err => { console.error(err); }
     });
+    this.teamService.purgeTeam();
   }
 
 }

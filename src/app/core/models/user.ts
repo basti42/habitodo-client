@@ -6,6 +6,7 @@ export interface User {
     token: string,
     icon_path: string,
     registered_at: Date,
+    last_login: Date,
     bio: string, 
     position: string, 
     boards: Array<object>,

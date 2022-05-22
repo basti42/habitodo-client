@@ -29,7 +29,7 @@ export class OverviewComponent implements OnInit {
     this.teamService.currentTeam.subscribe({
       next: team => { 
         this.currentTeam = team; 
-        console.debug("[DEBUG] Current Team: ", team); 
+        // console.debug("[DEBUG] Current Team: ", team); 
       },
       error: err => { console.error("[Profile Overview Component] error subscribing to current team: ", err); }
     });

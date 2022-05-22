@@ -17,22 +17,12 @@ export class TeamService {
   constructor(private apiService: ApiService, private jwtService: JwtService) { }
 
   // this will be run once on startup
-  setInitialTeam(team_id: string){
-    console.debug("[DEBUG] Retriving team with id: ", team_id);
+  setInitialTeam(){
     const token = this.jwtService.getToken();
     if (token){
-      this.apiService.getTeam(team_id).subscribe({
-        next: team => { 
-          this.currentTeamSubject.next(team);
-          console.debug("[Team Service] set initial team: ", team); 
-        },
-        error: err => { 
-          this.purgeTeam();
-          console.error("[Team Service] error initially retriving Team: ", err); 
-        }
-      });
+      this.getTeams();
     } else {
-      // remove all possible existing tokens and user info
+      // set next team to empty object to avoid weird memory states
       this.purgeTeam();
     }
   }
@@ -49,11 +39,24 @@ export class TeamService {
     });
   }
 
+  getTeams(){
+    this.apiService.getTeams().subscribe({
+      next: teams => { 
+        if (teams.length <= 0){
+          this.currentTeamSubject.next({} as Team);
+        } else {
+          this.currentTeamSubject.next(teams[0]);
+        }
+      }, 
+      error: error => { this.currentTeamSubject.next({} as Team); console.error("[TeamService::getTeams] ", error); }
+    });
+  }
+
   addTeam(team: Team){
     this.apiService.addTeam(team).subscribe({
-      next: msg => { 
-        console.debug(`[Team Service] Added Team: ${msg.message}`);
-        this.currentTeamSubject.next(team); 
+      next: addedTeam => { 
+        console.debug(`[Team Service] Added Team: ${addedTeam.team_name}`);
+        this.currentTeamSubject.next(addedTeam); 
       },
       error: error => {
         console.error(`[Team Service] Added Team: ${error}`);

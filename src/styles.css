@@ -13,6 +13,7 @@
 
 .card {
     border-radius: 0px !important;
+    border-left: 3px solid var(--habitodo-dark-blue);
 }
 
 .card-fixed-height {

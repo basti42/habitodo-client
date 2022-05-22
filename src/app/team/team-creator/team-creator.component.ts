@@ -55,10 +55,10 @@ export class TeamCreatorComponent implements OnInit {
       team_id: "",
       team_logo: formValues.team_logo,
       created_at: new Date(),
-      members_emails: this.emails,
+      emails: this.emails,
       boards: [],
-      team_admins: [this.userService.getCurrentUser().user_id],
-      metrics: [formValues.metric]
+      members: [this.userService.getCurrentUser().user_id],
+      admins: [this.userService.getCurrentUser().user_id]
     } as Team;
 
     // add team in backend
