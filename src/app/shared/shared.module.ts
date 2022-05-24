@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ShowAuthedDirective } from './show-authed.directive';
 import { ListErrorsComponent } from './list-errors/list-errors.component';
+import { CardComponent } from './components/card/card.component';
+import { NavItemComponent } from './components/nav-item/nav-item.component';
 
 
 
@@ -13,7 +15,9 @@ import { ListErrorsComponent } from './list-errors/list-errors.component';
 @NgModule({
   declarations: [
     ShowAuthedDirective,
-    ListErrorsComponent
+    ListErrorsComponent,
+    CardComponent,
+    NavItemComponent
   ],
   imports: [
     CommonModule,

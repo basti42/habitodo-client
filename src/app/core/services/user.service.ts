@@ -23,6 +23,7 @@ export class UserService {
 
   constructor(
     private apiService: ApiService, 
+    private teamService: TeamService,
     private jwtService: JwtService) {}
 
   // this will be run once on app startup
@@ -34,6 +35,7 @@ export class UserService {
         next: user => { this.setAuth(user, token); },
         error: err => { this.purgeAuth(); }
       });
+      this.teamService.getTeams();
     } else {
       // remove all possible existing tokens and user info
       this.purgeAuth();
@@ -62,6 +64,7 @@ export class UserService {
     return this.apiService.loginUser(email, password).pipe(map(
       user => {
         this.setAuth(user, user.token);
+        this.teamService.getTeams();
         return user;
       }
     ));
@@ -71,6 +74,7 @@ export class UserService {
     return this.apiService.registerUser(username, email, password).pipe(map(
       user => {
         this.setAuth(user, user.token);
+        this.teamService.getTeams();
         return user;
       } 
     ));
@@ -80,6 +84,7 @@ export class UserService {
     return this.apiService.logoutUser().pipe(map(
       status => {
         this.purgeAuth();
+        this.teamService.purgeTeam();
         return status.message;
       }
     ));
