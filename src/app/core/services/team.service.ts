@@ -42,6 +42,7 @@ export class TeamService {
   getTeams(){
     this.apiService.getTeams().subscribe({
       next: teams => { 
+        // console.debug("[] Retrieved Teams for User: ", teams);
         if (teams.length <= 0){
           this.currentTeamSubject.next({} as Team);
         } else {

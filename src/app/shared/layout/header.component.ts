@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   currentUser: User = {} as User;
+  currentTeam: Team = {} as Team;
 
   constructor(
     private userService: UserService,
@@ -20,7 +21,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.userService.currentUser.subscribe({
       next: user => { this.currentUser = user },
-      error: err => { console.error(err); }
+      error: err => { console.error("[Header Component] current user: ", err); }
+    });
+    this.teamService.currentTeam.subscribe({
+      next: team => { this.currentTeam = team },
+      error: err => { console.error("[Header Component] current team: ", err) }
     });
   }
 

@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { catchError, Observable, throwError } from 'rxjs';
-import { Team, User } from '../models';
+import { Team, Template, User } from '../models';
 
 
 @Injectable({
@@ -57,7 +57,8 @@ export class ApiService {
   }
 
   addTeam(team: Team) : Observable<any> {
-    return this.http.put(environment.team_add, { team_name: team.team_name, team_logo: team.team_logo, members_emails: team.emails });
+    return this.http.put(environment.team_add, { team_name: team.team_name, team_logo: team.team_logo, members_emails: team.emails, settings: { 
+      feedback_interval: team.feedback_interval, effective_day: team.effective_day, reminder: team.reminder, feedback_time_range: team.feedback_time_range } });
   }
 
 
@@ -67,5 +68,23 @@ export class ApiService {
  getMetrics() : Observable<any> {
    return this.http.get(environment.metrics_get);
  }
+
+ getTeamMetrics(team_id: String) : Observable<any> {
+   return this.http.get(`${environment.team_metrics_get}/${team_id}`)
+ }
+
+
+ /*
+  Templates
+ */
+getTemplates(team_id: String) : Observable<any> {
+  const url = environment.templates + team_id;
+  // console.debug("TEMPLATE URL = ", url);
+  return this.http.get(url);
+}
+
+addTemplate(template: Template) : Observable<any> {
+  return this.http.put(environment.templates, template);
+}
 
 }

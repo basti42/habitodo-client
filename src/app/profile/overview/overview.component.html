@@ -4,12 +4,10 @@
 
         <!-- <div class="col-md-6 col-xl-3"> -->
         <div class="col-lg-4">
-            <div class="card card card-fixed-height">
+            <div class="card card-fixed-height">
                 <div class="card-body">
                     <div class="row align-items-center justify-content-space-between">
                         <h5 class="card-title border-bottom">{{ currentUser.username }}</h5>
-                        <!-- <img style="height: 20px; width: 20px; margin-bottom: 5px;" src="/assets/google_icons/person_FILL1_wght400_GRAD0_opsz48.svg"/> -->
-                        <!-- <img class="user-pic" src="{{ currentUser.icon_path }}" style="width: 20px; height: 20px"/> -->
                         <div class="col-6">
                             <h5 class="text-muted fw-normal mt-0 text-truncate small">registered since:</h5>
                         </div>
@@ -17,10 +15,10 @@
                             <p class="text-muted fw-normal mt-0 text-truncate small">{{ currentUser.registered_at }}</p>
                         </div>
                     </div>
-                    <!-- <img class="rounded-circle mt-5" width="150px" src="{{ currentUser.icon_path }}"> -->
                     <a href="#" [routerLink]="['/settings', currentUser.username]" class="link-primary small">update Profile</a>
                 </div>
             </div>
+            <!-- <app-card [title]="{{currentUser.username}}" [body]="getUsercardBody()"></app-card> -->
         </div>
     
         <div class="col-lg-4"  *ngIf="(currentTeam | json) != '{}'">
@@ -73,7 +71,7 @@
                             <p class="card-text text-muted small">Number of Retro Boards:</p>
                         </div>
                         <div class="col-6">
-                            <p class="text-muted fw-normal mt-0 text-truncate small">{{ (currentUser.boards) ? currentUser.boards.length : 0 }}</p>
+                            <p class="text-muted fw-normal mt-0 text-truncate small">TODO get boards</p>
                         </div>
                     </div>
                     <a href="#" class="link-primary small">create Board</a>

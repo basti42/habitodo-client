@@ -6,5 +6,9 @@ export interface Team {
     emails: Array<String>,
     boards: Array<object>;
     members: Array<String>,
-    admins: Array<String>
+    admins: Array<String>,
+    feedback_interval: String,
+    effective_day: String,
+    reminder: Boolean, 
+    feedback_time_range: Number
 }

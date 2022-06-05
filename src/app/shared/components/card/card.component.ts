@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Cardbody } from 'src/app/core';
 
 @Component({
   selector: 'app-card',
@@ -11,5 +12,8 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  @Input() title: String = "";
+  @Input() body: Array<Cardbody> = [];
 
 }

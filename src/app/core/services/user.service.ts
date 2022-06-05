@@ -6,7 +6,9 @@ import { distinctUntilChanged } from 'rxjs';
 import { User, Team } from '../models';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
+import { MetricService } from './metric.service';
 import { TeamService } from './team.service';
+import { TemplateService } from './template.service';
 
 
 @Injectable({
@@ -24,7 +26,9 @@ export class UserService {
   constructor(
     private apiService: ApiService, 
     private teamService: TeamService,
-    private jwtService: JwtService) {}
+    private jwtService: JwtService,
+    private templateService: TemplateService,
+    private metricsService: MetricService) {}
 
   // this will be run once on app startup
   populate(){
@@ -33,9 +37,10 @@ export class UserService {
     if (token){
       this.apiService.getUserData().subscribe({
         next: user => { this.setAuth(user, token); },
-        error: err => { this.purgeAuth(); }
+        error: err => { console.error("[User Service] getUserData: ", err); this.purgeAuth(); }
       });
       this.teamService.getTeams();
+      this.templateService.load(" ");
     } else {
       // remove all possible existing tokens and user info
       this.purgeAuth();

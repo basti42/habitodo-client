@@ -31,7 +31,8 @@ import { NavItemComponent } from './components/nav-item/nav-item.component';
     ShowAuthedDirective,
     FormsModule, 
     ReactiveFormsModule,
-    ListErrorsComponent
+    ListErrorsComponent,
+    CardComponent
   ]
 })
 export class SharedModule { }

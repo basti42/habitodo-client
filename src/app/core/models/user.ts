@@ -9,7 +9,5 @@ export interface User {
     last_login: Date,
     bio: string, 
     position: string, 
-    boards: Array<object>,
-    personal_notes: Array<object>,
-    team_ids: Array<string>
+    personal_notes: Array<object>
 }

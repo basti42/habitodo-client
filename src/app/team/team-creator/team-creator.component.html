@@ -12,12 +12,12 @@
                 <form [formGroup]="teamForm" (ngSubmit)="submitForm()">
 
                     <div class="row mt-2">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <label class="labels">Team Name</label>
                             <input formControlName="team_name" type="text" class="form-control" placeholder="Select a Team name" value="">
                             <small id="teamNameHelp" class="form-text text-muted">This is how your team shall be named from now on.</small>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label class="labels">Team Logo</label>
                             <input formControlName="team_logo" type="file" class="form-control">
                             <small id="teamLogoHelp" class="form-text text-muted">.png or .jpg max. 1.5 MB size</small>
@@ -27,7 +27,7 @@
 
                     <!-- MEMEBER EMAILS -->
                     <div class="d-flex justify-content-between align-items-center mt-5 border-bottom">
-                        <h6 class="text-right">Add Members</h6>
+                        <h6 class="text-right">Invite Members</h6>
                         <span class="badge bg-primary">{{ emails.length }}</span>
                     </div>
 
@@ -46,31 +46,76 @@
                     <!-- display the entered emails below -->
                     <div class="row mt-2">
                         <div class="col-md-12">
-                            <span class="badge bg-secondary mx-1" *ngFor="let email of emails">{{ email }}</span>
+                            <span class="badge bg-secondary mx-1" *ngFor="let email of emails" (click)="removeEmailOnClick(email)">{{ email }}</span>
                         </div>
                     </div>
                     
 
 
-                    <!-- METRICS -->
+                    <!-- Settings -->
                     <div class="d-flex justify-content-between align-items-center mt-5 border-bottom">
-                        <h6 class="text-right">Metrics</h6>
+                        <h6 class="text-right">Settings</h6>
                         <!-- <span class="badge bg-success pointer" (click)="reload_metrics()" >Refresh</span> -->
                     </div>
 
                     <div class="row mt-3">
+                        <div class="col-md-5">
+                            <label class="labels">Feedback Interval</label>
+                            <select formControlName="feedback_interval" class="form-control form-select">
+                                <option value="Weekly" selected>Weekly</option>
+                                <option value="Daily">Daily</option>
+                                <option value="Every other day">Every other day</option>
+                                <option value="Bi-Weekly">Bi-Weekly</option>
+                            </select>
+                            <small id="scoringHelpInterval" class="form-text text-muted">Member feedback interval</small>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="labels">Day</label>
+                            <select formControlName="effective_day" class="form-control form-select">
+                                <option value="Mon">Mon</option>
+                                <option value="Tue" selected>Tue</option>
+                                <option value="Wed">Wed</option>
+                                <option value="Thu">Thu</option>
+                                <option value="Fri">Fri</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <br>
+                            <div class="form-check form-switch">
+                                <input formControlName="reminder" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                <label class="form-check-label" for="flexSwitchCheckChecked">Sent Reminders</label>
+                              </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="labels">Feedback Display Time Range</label>
+                            <div class="input-group">
+                                <input formControlName="feedback_time_range" type="number" class="form-control" placeholder="3" value="3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">month</span>
+                                  </div>
+                            </div>
+                            <small id="scoringHistoryHelpRange" class="form-text text-muted">Show feedback for last X month</small>
+                        </div>
+
+                    </div>
+
+                    <!-- Select from a template with some preview -->
+                    <div class="row mt-3 mt-5">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <select formControlName="use_moral_metric" class="form-control" id="exampleFormControlSelect1">
-                                    <option value="" selected disabled hidden>Choose Metric</option>
-                                    <option *ngFor="let metric of metrics">{{ metric.name }}</option>
+                                <select formControlName="use_feedback_metric" class="form-control form-select" id="exampleFormControlSelect1">
+                                    <option value="" selected disabled hidden>Choose Feedback Metric</option>
+                                    <option *ngFor="let template of templates ">{{ template.title }}</option>
                                 </select>
                               </div>
 
                         </div>
                     </div>
 
-                    <div class="mt-5 text-center"><button class="btn btn-primary" type="submit">Create Team</button></div>
+                    <div class="mt-5 text-center"><button class="btn btn-primary" type="submit" style="width: 400px;">Create Team</button></div>
                 </form>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService, User, TeamService, Team} from 'src/app/core';
+import { UserService, User, TeamService, Team, Cardbody} from 'src/app/core';
 
 @Component({
   selector: 'app-overview',
@@ -22,7 +22,7 @@ export class OverviewComponent implements OnInit {
     this.userService.currentUser.subscribe({
       next: user => { 
         this.currentUser = user; 
-        console.debug("[DEBUG] Current User: ", user); 
+        // console.debug("[DEBUG] Current User: ", user); 
       },
       error: err => { console.error("profile component: ", err) }
     });
@@ -33,6 +33,11 @@ export class OverviewComponent implements OnInit {
       },
       error: err => { console.error("[Profile Overview Component] error subscribing to current team: ", err); }
     });
+  }
+
+
+  getUsercardBody(): Array<Cardbody> {
+    return [{'key': 'registered since', 'value': this.currentUser.registered_at.toLocaleString()}]
   }
 
 }

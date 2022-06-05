@@ -1,4 +1,9 @@
 export interface Metrics {
-    name: String,
-    metrics: Object
+    _id: String,
+    date: String,
+    template: String,
+    team: String,
+    user: String, 
+    metrics: Array<Object>,
+    mean: Number
 };
