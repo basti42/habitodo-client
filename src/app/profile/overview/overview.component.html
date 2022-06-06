@@ -20,6 +20,36 @@
             </div>
             <!-- <app-card [title]="{{currentUser.username}}" [body]="getUsercardBody()"></app-card> -->
         </div>
+
+        <div class="col-lg-4">
+            <div class="card card card-fixed-height">
+                <div class="card-body">
+                    <h5 class="card-title border-bottom">{{ currentUser.username }}'s Moral Metric</h5>
+                    
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <h5 class="text-muted fw-normal mt-0 text-truncate small">Name of Moral Metric</h5>
+                        </div>
+                        <div class="col-6">
+                            <p class="text-muted fw-normal mt-0 text-truncate small">{{ currentMetricTemplates[0].title }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <h5 class="text-muted fw-normal mt-0 text-truncate small">avg</h5>
+                        </div>
+                        <div class="col-6">
+                            <p class="text-muted fw-normal mt-0 text-truncate small">{{ calcMetricMean() }} / {{ getMaxPossValue() }}</p>
+                        </div>
+                    </div>
+                    
+                    
+                    <!-- <a href="#" class="link-primary small" [routerLink]="['/team/create']">create Team</a> -->
+                </div>
+            </div>
+        </div>
+
     
         <div class="col-lg-4"  *ngIf="(currentTeam | json) != '{}'">
             <div class="card card card-fixed-height">
@@ -62,7 +92,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <!-- <div class="col-lg-4">
             <div class="card card card-fixed-height">
                 <div class="card-body">
                     <h5 class="card-title border-bottom">Boards</h5>
@@ -77,7 +107,7 @@
                     <a href="#" class="link-primary small">create Board</a>
                 </div>
             </div>
-        </div>
+        </div> -->
         
     </div>
 

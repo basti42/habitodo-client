@@ -18,8 +18,8 @@ export const environment = {
   team_get: `http://${host}:${port}/api/v1/teams/`,
   team_add: `http://${host}:${port}/api/v1/teams/`,
   team_delete: `http://${host}:${port}/api/v1/team/delete`,
-  metrics_get: `http://${host}:${port}/api/v1/metrics/users/`,
-  team_metrics_get: `http://${host}:${port}/api/v1/metrics/teams/`,
+  user_metrics: `http://${host}:${port}/api/v1/metrics/users/`,
+  team_metrics: `http://${host}:${port}/api/v1/metrics/teams/`,
   templates: `http://${host}:${port}/api/v1/metrics/templates/`
 };
 

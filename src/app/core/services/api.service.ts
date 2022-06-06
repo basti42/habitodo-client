@@ -65,12 +65,12 @@ export class ApiService {
   /*
     Metrics
   */
- getMetrics() : Observable<any> {
-   return this.http.get(environment.metrics_get);
+ getUserMetrics() : Observable<any> {
+   return this.http.get(environment.user_metrics);
  }
 
  getTeamMetrics(team_id: String) : Observable<any> {
-   return this.http.get(`${environment.team_metrics_get}/${team_id}`)
+   return this.http.get(`${environment.team_metrics}/${team_id}`)
  }
 
 

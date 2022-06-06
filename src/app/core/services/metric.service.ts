@@ -28,13 +28,7 @@ export class MetricService {
   load(){
     const token = this.jwtService.getToken();
     if (token) {
-      this.apiService.getMetrics().subscribe({
-        next: metrics => { this.currentUserMetricSubject.next(metrics); },
-        error: err => {
-          this.currentUserMetricSubject.next([]);
-          console.error("Error setting metrics: ", err);
-        }
-      });
+      this.getUserMetrics();
     }
 
     this.teamService.currentTeam.subscribe({
@@ -50,5 +44,15 @@ export class MetricService {
 
   } 
 
+
+  getUserMetrics() {
+    this.apiService.getUserMetrics().subscribe({
+      next: userMetrics => { this.currentUserMetricSubject.next(userMetrics); },
+      error: err => {
+        this.currentUserMetricSubject.next([]);
+        console.error("[METRICS SERVICE] Error retrieving user metrics: ", err);
+      }
+    });
+  }
 
 }

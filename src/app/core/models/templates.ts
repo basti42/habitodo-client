@@ -7,5 +7,6 @@ export interface Template {
     team: String,
     title: String,
     description: String,
+    max_possible_value: number,
     metrics: Array<Object>
 }

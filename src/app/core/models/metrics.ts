@@ -5,5 +5,5 @@ export interface Metrics {
     team: String,
     user: String, 
     metrics: Array<Object>,
-    mean: Number
+    mean: number
 };
