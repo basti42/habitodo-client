@@ -1,24 +1,52 @@
 <br>
 <div class="container">
 
-    <div class="row mt-12">
+    <div class="row mt-2">
 
         <!-- <div class="col-md-6 col-xl-3"> -->
         <div class="col-lg-12">
-            <div class="card card">
+            <div class="card">
                 <div class="card-body b-0">
                     <div class="row align-items-center justify-content-space-between">
-                        <h5 class="card-title">Team Name</h5>
-                        <!-- <div class="col-6">
-                            <h5 class="text-muted fw-normal mt-0 text-truncate small">registered since:</h5>
-                        </div>
-                        <div class="col-6">
-                            <p class="text-muted fw-normal mt-0 text-truncate small">{{ currentUser.registered_at }}</p>
-                        </div>
-                    </div> -->
+                        <h5 class="card-title">{{ currentTeam.team_name }}</h5>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
+
+    <div class="row mt-3">
+
+        <div class="col-lg-4">
+            <div class="card">
+                <ul>
+                    <li *ngFor="let member of currentTeam.members">{{ member }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card">
+                something
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card">
+                something
+            </div>
+        </div>
+
+
+
+        <!-- <div class="col-6">
+            <h5 class="text-muted fw-normal mt-0 text-truncate small">created at:</h5>
+        </div>
+        <div class="col-6">
+            <p class="text-muted fw-normal mt-0 text-truncate small">{{ currentTeam.created_at }}</p>
+        </div> -->
+    </div>
+
 
 </div>
