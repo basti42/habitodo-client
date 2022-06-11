@@ -61,6 +61,10 @@ export class ApiService {
       feedback_interval: team.feedback_interval, effective_day: team.effective_day, reminder: team.reminder, feedback_time_range: team.feedback_time_range } });
   }
 
+  getTeamMembersPublicProfile(member_ids: Array<String>) : Observable<any> {
+    return this.http.post(environment.user_public_profile, { 'user_ids': member_ids });
+  }
+
 
   /*
     Metrics

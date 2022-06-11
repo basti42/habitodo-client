@@ -5,47 +5,58 @@
         <!-- <div class="col-md-6 col-xl-3"> -->
         <div class="col-lg-4">
             <div class="card card-fixed-height">
-                <div class="card-body">
-                    <div class="row align-items-center justify-content-space-between">
-                        <h5 class="card-title border-bottom">{{ currentUser.username }}</h5>
-                        <div class="col-6">
-                            <h5 class="text-muted fw-normal mt-0 text-truncate small">registered since:</h5>
-                        </div>
-                        <div class="col-6">
-                            <p class="text-muted fw-normal mt-0 text-truncate small">{{ currentUser.registered_at }}</p>
-                        </div>
-                    </div>
+                <div class="card-header d-flex habitodo-bg-lightblue">
+                    <img style="height: 20px; width: 20px;" src="/assets/google_icons/person_FILL1_wght400_GRAD0_opsz48.svg" class="user-pic" />
+                    <span class="fw-normal flex-grow-1">{{ currentUser.username }}</span>
                     <a href="#" [routerLink]="['/settings', currentUser.username]" class="link-primary small">update Profile</a>
                 </div>
+                <div class="card-body">
+                    <div class="row align-items-center justify-content-space-between">
+                        <div class="col-6">
+                            <h5 class="text-muted mt-0 text-truncate small">registered since:</h5>
+                        </div>
+                        <div class="col-6">
+                            <p class="text-muted mt-0 text-truncate small">{{ currentUser.registered_at }}</p>
+                        </div>
+                        <div class="col-6">
+                            <h5 class="text-muted mt-0 text-truncate small">Last login:</h5>
+                        </div>
+                        <div class="col-6">
+                            <p class="text-muted mt-0 text-truncate small">{{ currentUser.last_login }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- <app-card [title]="{{currentUser.username}}" [body]="getUsercardBody()"></app-card> -->
         </div>
 
         <div class="col-lg-4">
             <div class="card card card-fixed-height">
-                <div class="card-body">
-                    <h5 class="card-title border-bottom">{{ currentUser.username }}'s Moral Metric</h5>
-                    
+                <div class="card-header d-flex  habitodo-bg-lightblue">
+                    <img style="height: 20px; width: 20px;" src="/assets/google_icons/bar_chart_FILL1_wght400_GRAD0_opsz48.svg" class="user-pic" />
+                    <span class="fw-normal flex-grow-1">{{ currentUser.username }}'s Moral Metric</span>
+                    <!-- <a href="#" [routerLink]="['/settings', currentUser.username]" class="link-primary small">update Profile</a> -->
+                </div>
+
+                <div class="card-body">                    
                     <div class="row align-items-center">
                         <div class="col-6">
-                            <h5 class="text-muted fw-normal mt-0 text-truncate small">Name of Moral Metric</h5>
+                            <h5 class="text-muted fw-normal mt-0 text-truncate small">Metric Name:</h5>
                         </div>
                         <div class="col-6">
-                            <p class="text-muted fw-normal mt-0 text-truncate small">{{ currentMetricTemplates[0].title }}</p>
+                            <p *ngIf="(currentTeam | json) === '{}'" class="text-muted fw-normal mt-0 text-truncated small">Nothing selected</p>
+                            <p *ngIf="(currentTeam | json) !== '{}'" class="text-muted fw-normal mt-0 text-truncate small">{{ currentMetricTemplates[0].title }}</p>
                         </div>
                     </div>
 
                     <div class="row align-items-center">
                         <div class="col-6">
-                            <h5 class="text-muted fw-normal mt-0 text-truncate small">avg</h5>
+                            <h5 class="text-muted fw-normal mt-0 text-truncate small">Current Score</h5>
                         </div>
                         <div class="col-6">
-                            <p class="text-muted fw-normal mt-0 text-truncate small">{{ calcMetricMean() }} / {{ getMaxPossValue() }}</p>
+                            <p *ngIf="(currentTeam | json) === '{}'" class="text-muted fw-normal mt-0 text-truncated small">Nothing selected</p>
+                            <p *ngIf="(currentTeam | json) !== '{}'" class="text-muted fw-normal mt-0 text-truncate small">{{ calcMetricMean() }} / {{ getMaxPossValue() }}</p>
                         </div>
                     </div>
-                    
-                    
-                    <!-- <a href="#" class="link-primary small" [routerLink]="['/team/create']">create Team</a> -->
                 </div>
             </div>
         </div>
@@ -53,8 +64,12 @@
     
         <div class="col-lg-4"  *ngIf="(currentTeam | json) != '{}'">
             <div class="card card card-fixed-height">
+                <div class="card-header d-flex habitodo-bg-lightblue">
+                    <img style="height: 20px; width: 20px;" src="/assets/google_icons/group_FILL1_wght400_GRAD0_opsz48.svg" class="user-pic" />
+                    <span class="fw-normal flex-grow-1">{{ currentTeam.team_name }}</span>
+                    <a href="#" [routerLink]="['/team']" class="link-primary small">team overview</a>
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title border-bottom">{{ currentTeam.team_name }}</h5>
                     <div class="row align-items-center">
                         <div class="col-6">
                             <h5 class="text-muted fw-normal mt-0 text-truncate small">created at:</h5>
@@ -71,23 +86,23 @@
                             <p class="text-muted fw-normal mt-0 text-truncate small">{{ currentTeam.members.length}}</p>
                         </div>
                     </div>
-                    
-                    <!-- <a href="#" class="link-primary small" [routerLink]="['/team/create']">create Team</a> -->
                 </div>
             </div>
         </div>
 
         <div class="col-lg-4" *ngIf="(currentTeam | json) === '{}'">
             <div class="card card-fixed-height">
+                <div class="card-header d-flex habitodo-bg-lightblue">
+                    <img style="height: 20px; width: 20px; margin-bottom: 5px;" src="/assets/google_icons/group_FILL1_wght400_GRAD0_opsz48.svg" class="user-pic" />
+                    <span class="fw-normal flex-grow-1">Create Team</span>
+                    <a href="#" class="link-primary small" [routerLink]="['/team/create']">create Team</a>
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title border-bottom">Team</h5>
                     <div class="row align-items-center">
                         <div class="col-12">
                             <p class="text-muted fw-normal mt-0 text-truncate small">Create a team to better track progress!</p>
                         </div>
                     </div>
-                    
-                    <a href="#" class="link-primary small" [routerLink]="['/team/create']">create Team</a>
                 </div>
             </div>
         </div>

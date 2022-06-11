@@ -12,6 +12,7 @@ export const environment = {
   user_logout: `http://${host}:${port}/api/v1/users/logout`,
   user_information: `http://${host}:${port}/api/v1/users/me`,
   user_profile_update: `http://${host}:${port}/api/v1/users/me`,
+  user_public_profile: `http://${host}:${port}/api/v1/users/public`,
 
   user_avatar_upload: `http://${host}:${port}/api/v1/files/upload/useravatar`,
   // user_profile: `http://${host}:${port}/api/v1/user/profile`,

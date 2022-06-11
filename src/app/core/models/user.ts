@@ -10,4 +10,11 @@ export interface User {
     bio: string, 
     position: string, 
     personal_notes: Array<object>
+};
+
+export interface UserPublic {
+    username: string,
+    email: string, 
+    position: string, 
+    bio: string
 }

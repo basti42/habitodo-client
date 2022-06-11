@@ -13,11 +13,23 @@
 
 .card {
     border-radius: 0px !important;
-    border-left: 3px solid var(--habitodo-dark-blue);
+    /* border-left: 3px solid var(--habitodo-dark-blue); */
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .card-fixed-height {
     max-height: 150px !important; min-height: 150px !important;
+}
+
+.habitodo-bg-lightblue {
+    background-color: var(--habitodo-light-blue) !important;
+}
+
+.user-background {
+    background-image: url("assets/google_icons/person_FILL1_wght400_GRAD0_opsz48.svg");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: bottom;
 }
 
 

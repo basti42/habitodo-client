@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, ReplaySubject, of , map} from 'rxjs';
 import { distinctUntilChanged } from 'rxjs';
 
-import { Team } from '../models';
+import { Team, UserPublic } from '../models';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 
@@ -13,6 +13,9 @@ export class TeamService {
 
   private currentTeamSubject = new BehaviorSubject<Team>({} as Team);
   public currentTeam = this.currentTeamSubject.asObservable().pipe(distinctUntilChanged());
+
+  private membersSubject = new BehaviorSubject<Array<UserPublic>>([]);
+  public members = this.membersSubject.asObservable().pipe(distinctUntilChanged());
 
   constructor(private apiService: ApiService, private jwtService: JwtService) { }
 
@@ -31,6 +34,12 @@ export class TeamService {
     this.currentTeamSubject.next({} as Team);
   }
 
+  getMemberProfiles(){
+    this.apiService.getTeamMembersPublicProfile(this.currentTeamSubject.value.members).subscribe({
+      next: members => { this.membersSubject.next(members); console.debug("[Team Service] members: ", members); },
+      error: err => { console.error("[Team Service] error retriving public member profiles: ", err); this.membersSubject.next([]); }
+    });
+  }
 
   getTeam(team_id: string){
     this.apiService.getTeam(team_id).subscribe({
