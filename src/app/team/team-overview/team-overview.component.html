@@ -5,10 +5,16 @@
 
         <!-- <div class="col-md-6 col-xl-3"> -->
         <div class="col-lg-12">
-            <div class="card">
+            <div class="card card-fixed-height">
+                <div class="card-header d-flex habitodo-bg-lightblue">
+                    <img style="height: 20px; width: 20px;" src="/assets/google_icons/group_FILL1_wght400_GRAD0_opsz48.svg" class="user-pic" />
+                    <span class="fw-normal flex-grow-1">{{ currentTeam.team_name }}</span>
+                    <!-- <a href="#" class="link-primary small" [routerLink]="['/boards/create']">create new Retro</a> -->
+                </div>
                 <div class="card-body b-0">
                     <div class="row align-items-center justify-content-space-between">
-                        <h5 class="card-title">{{ currentTeam.team_name }}</h5>
+                        <span>some infos</span>
+                        <span>some infos</span>
                     </div>
                 </div>
             </div>
@@ -20,23 +26,31 @@
 
         <div class="col-lg-4">
             <div class="card">
-                <ul>
-                    <li *ngFor="let member of currentMembers">{{ member.username }}</li>
-                </ul>
+                <div class="card-header d-flex habitodo-bg-lightblue">
+                    <!-- <img style="height: 20px; width: 20px; margin-bottom: 5px;" src="/assets/google_icons/group_FILL1_wght400_GRAD0_opsz48.svg" class="user-pic" /> -->
+                    <span class="fw-normal flex-grow-1">Members</span>
+                    <span class="text-muted small">Number of members {{ currentMembers.length }}</span>
+                    <!-- <a href="#" class="link-primary small" [routerLink]="['/boards/create']">create new Retro</a> -->
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li *ngFor="let member of currentMembers">{{ member.username }}</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-lg-8">
             <div class="card">
                 something
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <!-- <div class="col-lg-4">
             <div class="card">
                 something
             </div>
-        </div>
+        </div> -->
 
 
 

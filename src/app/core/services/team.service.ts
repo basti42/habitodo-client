@@ -34,8 +34,8 @@ export class TeamService {
     this.currentTeamSubject.next({} as Team);
   }
 
-  getMemberProfiles(){
-    this.apiService.getTeamMembersPublicProfile(this.currentTeamSubject.value.members).subscribe({
+  getMemberProfiles(members: Array<String>){
+    this.apiService.getTeamMembersPublicProfile(members).subscribe({
       next: members => { this.membersSubject.next(members); console.debug("[Team Service] members: ", members); },
       error: err => { console.error("[Team Service] error retriving public member profiles: ", err); this.membersSubject.next([]); }
     });

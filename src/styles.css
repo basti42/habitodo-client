@@ -17,6 +17,13 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+.card-header {
+    border-radius: 0px !important;
+}
+
+.card-header>a { color: black; font-style: italic; }
+.card-header>a:hover { color: var(--habitodo-dark-blue); }
+
 .card-fixed-height {
     max-height: 150px !important; min-height: 150px !important;
 }
